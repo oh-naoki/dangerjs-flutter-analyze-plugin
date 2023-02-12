@@ -2,7 +2,6 @@ import { DangerDSLType } from "../node_modules/danger/distribution/dsl/DangerDSL
 import * as fs from 'fs';
 
 declare let danger: DangerDSLType
-declare function fail(message: string, file?: string, line?: number): void
 declare function warn(message: string, file?: string, line?: number): void
 declare function message(message: string, file?: string, line?: number): void
 
