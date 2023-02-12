@@ -1,5 +1,5 @@
 {
-  "name": "@oh-naoki/dangerjs-flutter-analyze-plugin",
+  "name": "dangerjs-flutter-analyze-plugin",
   "version": "1.0.0",
   "description": "DangerJS Flutter analyze plugin",
   "main": "dist/index.js",
