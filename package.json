@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "DangerJS Flutter analyze plugin",
   "main": "dist/index.js",
-  "types": "dist/index.d.js",
   "scripts": {
     "lint": "eslint src/*.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
