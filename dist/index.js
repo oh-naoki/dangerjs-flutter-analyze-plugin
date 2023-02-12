@@ -23,22 +23,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.flutterAnalyze = void 0;
 const fs = __importStar(require("fs"));
-const report_txt = fs.readFileSync('./flutter_analyze_report.txt', 'utf-8').split('\n').map(line_txt => line_txt.trim());
-const reports = report_txt.filter(line => checkSeverity(line)).map(report => {
-    const splittedRport = report.split(" • ");
-    return new AnalyzeResult(Severity.INFO, splittedRport[1], splittedRport[2].split(":")[0], splittedRport[2].split(":")[1]);
-});
-reports.forEach(value => {
-    switch (value.severity) {
-        case Severity.INFO:
-            message(value.description, value.fileName, value.line);
-            break;
-        case Severity.ERROR:
-        case Severity.WARNING:
-            warn(value.description, value.fileName, value.line);
-    }
-});
+async function flutterAnalyze() {
+    const report_txt = fs.readFileSync('./flutter_analyze_report.txt', 'utf-8').split('\n').map(line_txt => line_txt.trim());
+    const reports = report_txt.filter(line => checkSeverity(line)).map(report => {
+        const splittedRport = report.split(" • ");
+        return new AnalyzeResult(Severity.INFO, splittedRport[1], splittedRport[2].split(":")[0], splittedRport[2].split(":")[1]);
+    });
+    reports.forEach(value => {
+        switch (value.severity) {
+            case Severity.INFO:
+                message(value.description, value.fileName, value.line);
+                break;
+            case Severity.ERROR:
+            case Severity.WARNING:
+                warn(value.description, value.fileName, value.line);
+        }
+    });
+}
+exports.flutterAnalyze = flutterAnalyze;
 function checkSeverity(value) {
     for (let key in Severity) {
         if (value.startsWith(Severity[key])) {
